@@ -11,20 +11,7 @@ export const removeBook = (payload) => ({
   payload,
 });
 
-const initialState = [
-  {
-    id: 1,
-    name: "The Hunger Games",
-    category: "Action",
-    author: "Suzanne Collins",
-  },
-  {
-    id: 2,
-    name: "The Games",
-    category: "Action",
-    author: "Suzanne ",
-  },
-];
+const initialState = [];
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
