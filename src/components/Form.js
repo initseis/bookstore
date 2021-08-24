@@ -4,12 +4,10 @@ import { addBook } from '../redux/books/books';
 
 const Form = () => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books);
+  const books = useSelector((state) => state.booksReducer);
 
-  // To get input values
   const [newTitle, setNewTitle] = useState('');
   const [newAuthor, setNewAuthor] = useState('');
-  const [newCategory, setCategory] = useState('');
 
   const getTitleInput = (event) => {
     setNewTitle(event.target.value);
@@ -17,10 +15,6 @@ const Form = () => {
 
   const getAuthorInput = (event) => {
     setNewAuthor(event.target.value);
-  };
-
-  const getCategory = (event) => {
-    setCategory(event.target.value);
   };
 
   const generateId = () => {
@@ -35,13 +29,12 @@ const Form = () => {
     return random;
   };
 
-  const handleClick = (event) => {
+  const submitBookToStore = (event) => {
     event.preventDefault();
     const newBook = {
       id: generateId(),
       name: newTitle,
       author: newAuthor,
-      category: newCategory,
     };
     dispatch(addBook(newBook));
   };
@@ -62,12 +55,7 @@ const Form = () => {
           required
           onChange={getAuthorInput}
         />
-        <select
-          name="category"
-          placeholder="cat"
-          required
-          onChange={getCategory}
-        >
+        <select name="category" placeholder="cat">
           <option value="" disabled selected>
             Category
           </option>
@@ -75,7 +63,7 @@ const Form = () => {
           <option value="science Fiction">Science Fiction</option>
           <option value="economy">Economy</option>
         </select>
-        <button type="submit" onClick={handleClick}>
+        <button type="submit" onClick={submitBookToStore}>
           ADD BOOK
         </button>
       </form>
