@@ -37,13 +37,13 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export const getBooksThunk = () => function (dispatch) {
+export const getBooksThunk = () => (dispatch) => {
   getBooksAPI().then((res) => {
     dispatch(getBooks(Object.entries(res)));
   });
 };
 
-export const addBookThunk = (newBook) => function (dispatch) {
+export const addBookThunk = (newBook) => (dispatch) => {
   setBookAPI(newBook).then(() => {
     dispatch(
       addBook([
@@ -54,7 +54,7 @@ export const addBookThunk = (newBook) => function (dispatch) {
   });
 };
 
-export const removeBooksThunk = (id) => function (dispatch) {
+export const removeBooksThunk = (id) => (dispatch) => {
   deleteBookAPI(id).then(() => {
     dispatch(removeBook(id));
   });
