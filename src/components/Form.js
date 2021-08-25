@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { addBook } from '../redux/books/books';
 
 const Form = () => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books);
 
-  // To get input values
   const [newTitle, setNewTitle] = useState('');
   const [newAuthor, setNewAuthor] = useState('');
-  const [newCategory, setCategory] = useState('');
 
   const getTitleInput = (event) => {
     setNewTitle(event.target.value);
@@ -19,29 +17,12 @@ const Form = () => {
     setNewAuthor(event.target.value);
   };
 
-  const getCategory = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const generateId = () => {
-    let temp = true;
-    let random;
-    while (temp) {
-      random = parseInt(Math.random() * (100 - 1) + 1, 10);
-      books.filter((book) => book.id === random).length > 0
-        ? (temp = true)
-        : (temp = false);
-    }
-    return random;
-  };
-
-  const handleClick = (event) => {
+  const submitBookToStore = (event) => {
     event.preventDefault();
     const newBook = {
-      id: generateId(),
+      id: uuidv4(),
       name: newTitle,
       author: newAuthor,
-      category: newCategory,
     };
     dispatch(addBook(newBook));
   };
@@ -62,12 +43,7 @@ const Form = () => {
           required
           onChange={getAuthorInput}
         />
-        <select
-          name="category"
-          placeholder="cat"
-          required
-          onChange={getCategory}
-        >
+        <select name="category" placeholder="cat">
           <option value="" disabled selected>
             Category
           </option>
@@ -75,7 +51,7 @@ const Form = () => {
           <option value="science Fiction">Science Fiction</option>
           <option value="economy">Economy</option>
         </select>
-        <button type="submit" onClick={handleClick}>
+        <button type="submit" onClick={submitBookToStore}>
           ADD BOOK
         </button>
       </form>
