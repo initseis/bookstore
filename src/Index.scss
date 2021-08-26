@@ -1,0 +1,399 @@
+/*********************
+VARIABLES
+*********************/
+$mon: montserrat, sans-serif;
+$rob: "Roboto Slab", sans-serif;
+$azure: #0290ff;
+$black-two: #121212;
+$medium-blue: #307bbe;
+$dodger-blue: #379cf6;
+$warm-grey: #888;
+$pinkish-grey: #c4c4c4;
+$border: #e8e8e8;
+$blueoptions: #4386bf;
+
+/*********************
+BREAKPOINTS
+*********************/
+
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (max-width: 992px) {
+      @content;
+    }
+  }
+
+  @else if $point == tablet {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+
+  @else if $point == mobile {
+    @media (max-width: 600px) {
+      @content;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f5f6fa;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  font-family: $mon;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+header {
+  background-color: #fff;
+  border-bottom: 1px solid $border;
+  height: 5.938rem;
+  padding: 2rem;
+
+  @include breakpoint(mobile) {
+    padding: 1rem;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+
+    @include breakpoint(mobile) {
+    }
+  }
+
+  .navLink {
+    font-size: 0.813rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1.9px;
+    color: #121212;
+    opacity: 0.5;
+  }
+
+  .logo {
+    color: $azure;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+
+    @include breakpoint(mobile) {
+      font-size: 0.8rem;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: 1rem;
+    }
+  }
+
+  .navItems {
+    display: flex;
+    align-items: center;
+
+    @include breakpoint(mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .navItem:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  .userButton {
+    background-color: #fff;
+    height: 40px;
+    width: 40px;
+    border: 1px solid $border;
+    border-radius: 50%;
+    align-self: flex-end;
+  }
+
+  .userIcon {
+    color: $azure;
+  }
+}
+
+main {
+  padding: 2rem 4rem;
+  height: 450px;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+
+  @include breakpoint(mobile) {
+    padding: 2rem 1rem;
+  }
+
+  @include breakpoint(tablet) {
+    padding: 2rem 2rem;
+  }
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+.book {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  background-color: #fff;
+  padding: 1.75rem 8rem 1.5rem 1.5rem;
+  border: 1px solid $border;
+  border-radius: 4px;
+
+  @include breakpoint(tablet) {
+    grid-template-columns: 100%;
+    padding-left: 2rem;
+  }
+}
+
+.book:not(:last-child) {
+  margin-bottom: 1.25rem;
+}
+
+.bookDetail {
+  margin-bottom: 1.5rem;
+}
+
+.bookCategory {
+  font-family: $mon;
+  color: #121212;
+  font-weight: bold;
+  font-size: 0.875rem;
+  opacity: 0.5;
+}
+
+.bookTitle {
+  font-family: $rob;
+  color: #121212;
+  font-weight: bold;
+  font-size: 1.375rem;
+}
+
+.bookAuthor,
+.bookOptions > button {
+  font-family: $rob;
+  color: $blueoptions;
+  font-weight: 300;
+  font-size: 0.875rem;
+}
+
+form > button {
+  background-color: $azure;
+  width: 15%;
+  height: 2.25rem;
+  color: #fff;
+  border-radius: 3px;
+  border: none;
+  font-size: 0.75rem;
+  font-family: $rob;
+  font-weight: bold;
+
+  @include breakpoint(mobile) {
+    width: 100%;
+  }
+}
+
+.bookOptions {
+  display: flex;
+  align-items: center;
+}
+
+.bookOptions > button {
+  background-color: transparent;
+  border: none;
+}
+
+.divider {
+  height: 1.5rem;
+  width: 0.125rem;
+  margin: 0 1rem;
+  background-color: $border;
+  color: transparent;
+}
+
+.sectionDivider {
+  height: 4rem;
+  width: 0.125rem;
+  background-color: $border;
+  color: transparent;
+  margin: 0 1.5rem;
+
+  @include breakpoint(mobile) {
+    display: none;
+  }
+}
+
+.bookCompletion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include breakpoint(mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.bookPercentage {
+  display: flex;
+  align-items: center;
+
+  @include breakpoint(mobile) {
+    margin: 2rem 0;
+  }
+}
+
+.circleCompletion {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border-top: 4px solid $dodger-blue;
+  border-right: 4px solid $dodger-blue;
+  border-bottom: 4px solid $dodger-blue;
+  border-left: 4px solid $border;
+  rotate: 45deg;
+  margin-right: 1.5rem;
+}
+
+.completionDetails > h2 {
+  font-family: $mon;
+  font-weight: normal;
+  color: #121212;
+  font-size: 2rem;
+}
+
+.completionDetails > h4 {
+  font-family: $mon;
+  font-weight: normal;
+  color: #121212;
+  font-size: 0.875rem;
+  opacity: 0.5;
+}
+
+.chapterDetails > h4 {
+  font-family: $rob;
+  color: #121212;
+  font-size: 0.813rem;
+  opacity: 0.5;
+  font-weight: 300;
+}
+
+.chapterDetails > h3 {
+  font-family: $rob;
+  color: #121212;
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 1.25rem;
+}
+
+.chapterDetails > button {
+  font-family: $rob;
+  font-size: 0.813rem;
+  font-weight: 300;
+  width: 11.5rem;
+  height: 2.063rem;
+  background-color: $azure;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+}
+
+.addForm {
+  padding: 0 4rem;
+}
+
+.line {
+  border: 1px solid $border;
+  padding: 0 5rem;
+  margin-bottom: 2rem;
+}
+
+.addForm > h2 {
+  font-family: $mon;
+  font-size: 1.25rem;
+  color: $warm-grey;
+  font-weight: bold;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+  margin-bottom: 8rem;
+
+  @include breakpoint(mobile) {
+    flex-direction: column;
+  }
+}
+
+form > input {
+  font-family: $mon;
+  background-color: #fff;
+  border: 1px solid $border;
+  border-radius: 4px;
+  height: 2.25rem;
+  width: 55%;
+  padding-left: 1rem;
+  font-weight: normal;
+
+  @include breakpoint(mobile) {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+form > input::placeholder {
+  font-family: $mon;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #c4c4c4;
+}
+
+form > select {
+  font-family: $mon;
+  font-size: 0.75rem;
+  font-weight: normal;
+  background-color: #fff;
+  border: 1px solid $border;
+  border-radius: 4px;
+  height: 2.25rem;
+  width: 25%;
+  padding-left: 1rem;
+  color: #c4c4c4;
+
+  @include breakpoint(mobile) {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// form > input::placeholder {
+//   font-family: $mon;
+//   font-size: 0.75rem;
+//   font-weight: normal;
+// }
