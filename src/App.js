@@ -19,14 +19,18 @@ function App() {
               </Link>
             </li>
             <li className="navItem">
-              <Link to="/">BOOKS</Link>
+              <Link className="navLink" to="/">
+                BOOKS
+              </Link>
             </li>
             <li className="navItem">
-              <Link to="/categories">CATEGORIES</Link>
+              <Link className="navLink" to="/categories">
+                CATEGORIES
+              </Link>
             </li>
           </ul>
-          <button type="button">
-            <FaUser />
+          <button type="button" className="userButton">
+            <FaUser className="userIcon" />
           </button>
         </nav>
       </header>
@@ -37,6 +41,7 @@ function App() {
         </Route>
         <Route exact path="/">
           <Books />
+          <hr className="line" />
           <Form />
         </Route>
       </Switch>
